@@ -1,0 +1,6 @@
+
+.DS_Store
+data/all_opinions.csv
+data/supreme-court-opinions-by-author.jsonl
+data/opinions_since_1970.csv
+data/supreme-court-opinions-by-author.jsonl.gz
