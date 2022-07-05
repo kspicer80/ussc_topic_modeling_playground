@@ -34,18 +34,38 @@ reduced_vectors = top2vec_model.topic_vectors_reduced
 labels = top2vec_model.doc_top_reduced
 
 top_nums = top2vec_model.get_num_topics()
-print(top_nums)
+#print(top_nums)
 
-umap.plot.points(reduced2d, labels=labels, color_key_cmap = 'viridits', background='white')
+umap_args_model = {
+    "n_neighbors": 10,
+    "n_components": 2,
+    "metric": "cosine",
+    "min_dist": 0.10,
+    'spread': 1
+}
+
+documents, document_scores, document_ids = top2vec_model.search_documents_by_topic(topic_num=51, num_docs=5)
+for doc, score, doc_id in zip(documents, document_scores, document_ids):
+    print(f"Document: {doc_id}, Score: {score}")
+    print("-----------")
+    print(doc)
+    print("-----------")
+    print()
+
+#umap_model = umap.UMAP(**umap_args_model).fit(top2vec_model._get_document_vectors(norm=False))
+#umap_figure = umap.plot.points(umap_model, labels=top2vec_model.doc_top_reduced, theme='fire')
+#plt.show()
+
+#umap.plot.points(reduced2d, labels=labels, color_key_cmap = 'viridis', background='white')
 
 
 #umap.plot.points(reduced2d, labels=topic_labels, color_key_cmap='viridis', background='white')
-plt.show()
+#plt.show()
 
-topic_nums = reduced_vectors.get_num_topics()
-print(topic_nums)
+#print(topic_nums)
 #print(top2vec_model.get_num_topics())
 #print(top2vec_model.topic_words)
+
 
 '''
 topic_sizes, topic_nums = top2vec_model.get_topic_sizes()
@@ -53,14 +73,20 @@ print(f"The size of the topics found is: {topic_sizes}")
 print("=========================")
 print(f"The topic numbers found are: {topic_nums}")
 print("=========================") 
-topic_words, word_scores, topic_nums = top2vec_model.get_topics(10)
+
+topic_words, word_scores, topic_nums = top2vec_model.get_topics(50)
  
 for words, scores, num in zip(topic_words, word_scores, topic_nums):
     print(f"The numbers are: {num}")
     print("=========================")
     print(f"The words are: {words}")
- 
-documents, document_scores, document_ids = top2vec_model.search_documents_by_topic(topic_num=0, num_docs=10)
+'''
+
+topic_words, word_scores, topic_scores, topic_nums = top2vec_model.search_topics(keywords=["abortion"], num_topics=25)
+print(topic_nums)
+
+'''
+#documents, document_scores, document_ids = top2vec_model.search_documents_by_topic(topic_num=0, num_docs=10)
  
 #for doc, score, doc_id in zip(documents, document_scores, document_ids):
     #print(f"Document: {doc_id}, Score: {score}")
