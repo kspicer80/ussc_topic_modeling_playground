@@ -21,8 +21,8 @@ combined_vectors = np.vstack((top2vec_model.topic_vectors, top2vec_model._get_wo
 
 #top2vec_model.topic_words
 
-with open('topic_words.txt', 'w') as f:
-    f.write(str(top2vec_model.topic_words))
+#with open('topic_words.txt', 'w') as f:
+    #f.write(str(top2vec_model.topic_words))
 
 '''
 umap_args_for_plot = {
@@ -62,15 +62,16 @@ umap_args_model = {
     "min_dist": 0.10,
     'spread': 1
 }
+'''
 
-documents, document_scores, document_ids = top2vec_model.search_documents_by_topic(topic_num=51, num_docs=10)
+documents, document_scores, document_ids = top2vec_model.search_documents_by_topic(topic_num=51, num_docs=5)
 for doc, score, doc_id in zip(documents, document_scores, document_ids):
     print(f"Document: {doc_id}, Score: {score}")
-    #print("-----------")
-    #print(doc)
+    print("-----------")
+    print(doc[0:250])
     print("-----------")
 
-
+'''
 #umap_model = umap.UMAP(**umap_args_model).fit(top2vec_model._get_document_vectors(norm=False))
 #umap_figure = umap.plot.points(umap_model, labels=top2vec_model.doc_top_reduced, theme='fire')
 #plt.show()
@@ -85,8 +86,6 @@ for doc, score, doc_id in zip(documents, document_scores, document_ids):
 #print(top2vec_model.get_num_topics())
 #print(top2vec_model.topic_words)
 
-
-
 topic_sizes, topic_nums = top2vec_model.get_topic_sizes()
 print(f"The size of the topics found is: {topic_sizes}")
 print("=========================")
@@ -100,13 +99,13 @@ for words, scores, num in zip(topic_words, word_scores, topic_nums):
     print(f"The numbers are: {num}")
     print("=========================")
     print(f"The words are: {words}")
-
+'''
 
 topic_words, word_scores, topic_scores, topic_nums = top2vec_model.search_topics(keywords=["abortion"], num_topics=25)
-print(topic_nums)
+#print(topic_nums)
 for topic_words, word_scores, topic_scores, topic_nums in zip(topic_words, word_scores, topic_scores, topic_nums):
     print(topic_words, word_scores, topic_scores, topic_nums)
     #print("-----------")
     #print(doc)
     #print("-----------")
-'''
+
