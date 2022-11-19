@@ -1,7 +1,7 @@
 import json
 import requests
 
-URL = "https://www.courtlistener.com/api/rest/v3/opinions/?cluster__docket__court__id=scotus&court__date_modified__gt=2020-01-01T00:00:00Z"
+URL = "https://www.courtlistener.com/api/rest/v3/opinions/?cluster__docket__court__id=scotus&court__date_modified__gt=2016-01-01T00:00:00Z"
 
 response = requests.get(URL)
 data = response.json()
